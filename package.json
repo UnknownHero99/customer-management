@@ -1,0 +1,23 @@
+{
+  "name": "financediagnosiswebapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "financeDiagnosisWebAPP"
+  },
+  "author": "Jakob Salmič",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.1",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-sequence": "^4.0.1",
+    "mongoose-unique-validator": "^2.0.1"
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script scr="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/ajax.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+  </head>
+  <body>
+    <div id="wrapper">
+    <header>
+
+    </header>
+    <article>
+        <table id="dodajStranko">
+            <thead>
+                <tr>
+                    <th colspan="2">Dodaj novo stranko</th>
+                </tr>
+                <tr>
+                    <th colspan="2"><p id="errorMessage" ></p></th>
+                </tr>
+            </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="name" id="name" placeholder="Ime"></td>
+              <td><input type="text" name="surname" id="surname" placeholder="Priimek"></td>
+          </tr>
+          <tr>
+              <td><input type="number" name="birthYear" id="birthYear" placeholder="Leto Rojstva"></td>
+              <td>
+                <select id="genderDropDown">
+                  <option value="M">Moški</option>
+                  <option value="Ž">Ženska</option>
+                </select>
+              </td>
+          </tr>
+          <tr>
+              <td><input type="text" name="weight" id="weight" value="" placeholder="Teža"></td>
+              <td><input type="text" name="height" id="height" value="" placeholder="Višina"></td>
+          </tr>
+          <tr>
+              <td><input type="text" name="bloodPressure" id="bloodPressure" value="" placeholder="Krvni Tlak"></td>
+              <td><textarea name="healthStatus" id="healthStatus" value="" placeholder="Zdravstveno Stanje"></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="text" name="profession" id="profession" value="" placeholder="Poklic"></td>
+              <td><input type="text" name="sportActivity" id="sportActivity" value="" placeholder="Športne Aktivnosti"></td>
+          </tr>
+          <tr>
+              <td><input type="text" name="nutrition" id="nutrition" value="" placeholder="Prehrana"></td>
+              <td><input type="text" name="city" id="city" value="" placeholder="Kraj"></td>
+          </tr>
+          <tr>
+              <td><input type="text" name="telNumber" id="telNumber" value="" placeholder="Telefonska Številka"></td>
+              <td><input type="text" name="email" id="email" value="" placeholder="E-pošta"></td>
+          </tr>
+          <tr>
+              <td><textarea type="text" name="other" id="other" value="" placeholder="Ostalo"></textarea></td>
+              <td><button type="button" class="button" onclick="createNewCustomerRequest();" >Dodaj</button></td>
+            </tr>
+          </tbody>
+        </table>
+      <table id="tabelaStrank">
+        <thead>
+          <th>Ime</th>
+          <th>Priimek</th>
+          <th>Leto rojstva</th>
+          <th>Spol</th>
+          <th>Teža</th>
+          <th>Višina</th>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <script>
+      loadCustomers()
+    </script>
+    </article>
+    <footer>
+
+    </footer>
+  </div>
+  </body>
+</html>

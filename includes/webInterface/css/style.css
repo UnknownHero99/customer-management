@@ -1,0 +1,123 @@
+#wrapper{
+      position: relative;
+      min-height: 100%;
+}
+
+html, body{
+      height: 100%;
+      margin: 0;
+}
+
+body{
+      background: #1abc9c;
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: #34495e;
+}
+
+h2{
+    text-align: center;
+    color: #FFF;
+
+}
+
+h1{
+    margin: 0;
+}
+
+footer{
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    background-color: #34803e;
+    height: 100px;
+}
+article{
+    padding-top: 100px;
+    position: relative;
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+
+
+#dodajStranko, #tabelaStrank, #terapijeStranka, #dodajTerapijo{
+    display:inline-block;
+    margin: 20px;
+}
+
+table{
+    vertical-align: top;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #edeff1;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+table tbody{
+    padding: 20px;
+}
+
+table thead{
+  color: black;
+}
+
+table th, table td{
+  text-align: center;
+  padding: 10px
+}
+
+table a{
+  color: black !important;
+  text-decoration: none;
+}
+
+h1{
+  text-align: center;
+}
+
+input, textarea, select{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #FFF;
+    width: 200px !important;
+    text-align: center;
+}
+
+input:focus, textarea:focus, select:focus{
+    background-color: #34495e;
+    color: #FFF;
+}
+
+.button{
+    background-color: #1abc9c;
+    border: none;
+    padding: 10px 20px;
+    color: #FFF;
+    font-weight: bold;
+    width: 200px;
+
+}
+
+#errorMessage{
+  width: 400px;
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #34495e;
+  color: #1abc9c;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  display: none;
+
+}
