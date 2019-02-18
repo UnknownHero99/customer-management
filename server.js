@@ -1,7 +1,8 @@
-var RestAPI = require('./RestAPI.js');
-var WebInterface = require('./WebInterface.js');
-var APIPort = process.envPort || 3000;
-var InterfacePort = process.envPort || 8080;
+const RestAPI = require('./RestAPI.js');
+const WebInterface = require('./WebInterface.js');
+const APIPort = process.envPort || 3000;
+const InterfacePort = process.envPort || 8080;
+
 
 var APIServer = RestAPI.listen(APIPort, function() {
   console.log('Express APIServer is listening on port ' + APIPort);

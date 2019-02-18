@@ -1,3 +1,25 @@
+function login() {
+    error();
+
+  var data_file = "http://" + window.location.hostname + ":3000/users";
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+     if (this.readyState == 4 && this.status == 200) {
+        var jsonResponse = JSON.parse(this.responseText)
+        if(jsonResponse.success){
+            document.cookie = "token="+jsonResponse.token;
+            window.location.href = window.location.href;
+        }
+        else error("wrong login");
+    }
+  };
+  xhttp.open("GET", data_file, true);
+  xhttp.setRequestHeader("username", document.getElementById("username").value);
+  xhttp.setRequestHeader("password", document.getElementById("password").value);
+  xhttp.send();
+}
+
 function loadCustomers() {
   var table = document.getElementById("tabelaStrank");
   table.tBodies[0].innerHTML = ""
@@ -26,6 +48,7 @@ function loadCustomers() {
     }
   };
   xhttp.open("GET", data_file, true);
+  xhttp.withCredentials = true;
   xhttp.send();
 }
 
@@ -85,6 +108,7 @@ function loadSpecificCustomers(id) {
 
   };
   xhttp.open("GET", data_file, true);
+  xhttp.withCredentials = true;
   xhttp.send();
 }
 
@@ -173,6 +197,7 @@ function createNewCustomerRequest () {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", data_file, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.withCredentials = true;
     xhttp.send(JSON.stringify(customer));
     setTimeout(loadCustomers, 500);
 }
@@ -211,6 +236,7 @@ function createNewTherapyRequest (id) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", data_file, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.withCredentials = true;
     xhttp.send(JSON.stringify(Therapy));
     setTimeout(loadSpecificCustomers, 500, id);
 }

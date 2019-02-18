@@ -12,66 +12,19 @@
 
     </header>
     <article>
-      <h1>Stranka</h1>
-      <table id="podatkiStranka">
-        <thead>
-          <th>Ime</th>
-          <th>Priimek</th>
-          <th>Leto Rojstva</th>
-          <th>Spol</th>
-          <th>Teža</th>
-          <th>Višina</th>
-          <th>Krvni Pritisk</th>
-      </thead>
-
-        <tbody></tbody>
-        <thead>
-
-            <th>Stroka</th>
-            <th>Športna Aktivnost</th>
-            <th>Prehrana</th>
-            <th>Kraj</th>
-            <th>Tel. Številka</th>
-            <th>E-poštni Naslov</th>
-        </thead>
-        <tbody></tbody>
-        <thead>
-            <th colspan="4">Zdravstveno Stanje</th>
-            <th colspan="3">Ostalo</th>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <h1>Terapije</h1>
-      <table id="terapijeStranka">
-        <thead>
-          <th>Razlog</th>
-          <th>Pričakovanja</th>
-          <th>Spremembe</th>
-          <th>Tip Terapije</th>
-          <th>Povratne informacije</th>
-          <th>Podan Nasvet</th>
-          <th>Zapiski</th>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-      <script>
-      loadSpecificCustomers(window.location.pathname.split("/")[2])</script>
+        <div style="background: #FFF">
+            <p id="errorMessage" >
+          <center>Username:</center>
+          <center><input id="username" name="username" size="14" /></center>
+          <center>Password:</center>
+          <center><input id="password" name="password" type="password" size="14" /></center>
+          <center><button type="button" class="button" onclick="login()" >Dodaj</button></center>
+      </div>
     </article>
     <footer>
 
     </footer>
-    <div id="popupForm">
-      <form name="therapy" action="" method="post">
-      <center>Username:</center>
-      <center><input name="username" size="14" /></center>
-      <center>Password:</center>
-      <center><input name="password" type="password" size="14" /></center>
-      <center><input type="submit" name="submit" value="login" /></center>
-      </form>
-      <br />
-      <center><a href="javascript:login('hide');">close</a></center>
-      </div>
+
   </div>
   </body>
 </html>

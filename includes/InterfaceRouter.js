@@ -1,33 +1,41 @@
 var express = require('express');
+var cookieParser = require('cookie-parser')
 var router = express.Router();
 var Client = require('../models/Client');
+var jwt    = require('jsonwebtoken');
+router.use(cookieParser());
 
+router.use(function(req, res, next){
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080/');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    //intercepts OPTIONS method
+    if ('OPTIONS' === req.method) {
+      //respond with 200
+      res.sendStatus(200);
+    }
+
+    else if (req.url == "/css/style.css" || req.url == "/js/ajax.js") next();
+    else {
+        try{
+            var token = req.cookies["token"];
+        }
+        catch(e){
+            console.log(e);
+        }
+        if(token){
+            jwt.verify(token, "superSecret", function(err, decoded){
+                if(err) res.json({success: false, message: "Authentication failed.token invalid."});
+                req.decoded = decoded;
+                next();
+            });
+        }
+        else res.status(403).sendFile('/webInterface/' + "login.html" , { root : __dirname});
+    }
+});
 
 router.get('/', function (req, res) {
-  console.log(req.query);
-  if(typeof req.query.name !== 'undefined' && req.query.name !== null){
-    Client.create({
-      name: req.query.name,
-      surname: req.query.surname,
-      birthYear: req.query.birthYear,
-      gender: req.query.gender,
-      weight: req.query.weight,
-      height: req.query.height,
-      bloodPressure: req.query.bloodPressure,
-      healthStatus: req.query.healthStatus,
-      profession: req.query.profession,
-      sportActivity: req.query.sportActivity,
-      nutrition: req.query.nutrition,
-      city: req.query.city,
-      telNumber: req.query.telNumber,
-      email: req.query.email,
-      other: req.query.other
-    }, function (err, user){
-      if(err) return res.status(500).send("There was a problem adding the information to the database. :" + err);
-      res.redirect('/');
-    })
-}
-else res.sendFile('/webInterface/' + "index.html" , { root : __dirname});
+    res.sendFile('/webInterface/' + "index.html" , { root : __dirname});
 });
 
 router.get('/client/:id', function (req, res) {

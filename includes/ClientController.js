@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var jwt    = require('jsonwebtoken');
+var cookieParser = require('cookie-parser')
+router.use(cookieParser());
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.use(function(req, res, next){
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
@@ -16,8 +20,20 @@ router.use(function(req, res, next){
       res.sendStatus(200);
     }
     else {
-    //move on
-      next();
+        try{
+            var token = req.cookies["token"];
+        }
+        catch(e){
+            console.log(e);
+        }
+        if(token){
+            jwt.verify(token, "superSecret", function(err, decoded){
+                if(err) res.json({success: false, message: "Authentication failed.token invalid."});
+                req.decoded = decoded;
+                next();
+            });
+        }
+        else res.status(403).sendFile('/webInterface/' + "login.html" , { root : __dirname});
     }
 });
 
@@ -71,7 +87,6 @@ router.post('/:id/therapies', function (req, res) {
 router.get('/', function (req, res) {
   Client.find({}, function (err, clients){
     if(err) return res.status(500).send("There was a problem reading the information from the database. :" + err);
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).send(clients);
   })
 });
@@ -79,7 +94,6 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res) {
   Client.findOne({_id: req.params.id}, function (err, client){
     if(err) return res.status(500).send("There was a problem reading the information from the database. :" + err);
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).send(client);
   })
 });
