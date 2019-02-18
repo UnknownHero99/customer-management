@@ -63,6 +63,14 @@ router.post('/', function (req, res) {
     })
 });
 
+router.put('/', function (req, res) {
+    console.log(req.body);
+    Client.findOneAndUpdate({_id: req.body.id}, req.body, {upsert:true}, function (err, client) {
+      if(err) return res.status(500).send("There was a problem adding the information to the database. :" + err);
+      res.status(200).send(client);
+    });
+});
+
 router.post('/:id/therapies', function (req, res) {
   var therapy = {
     date: req.body.date,

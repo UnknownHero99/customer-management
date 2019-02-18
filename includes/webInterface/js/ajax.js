@@ -1,3 +1,4 @@
+var customerID = "";
 function login() {
     error();
 
@@ -41,8 +42,9 @@ function loadCustomers() {
           row.insertCell(3).innerHTML = client.gender;
           row.insertCell(4).innerHTML = client.weight + " kg";
           row.insertCell(5).innerHTML = client.height + " cm";
-          row.onclick = function(){
-            window.location.pathname= "client/"+this.id;
+          row.insertCell(6).innerHTML = "<img onclick=\"edit(" + client._id + ")\" src=\"/img/editIcon.png\"/>";
+          row.cells[6].onclick = function(){
+            window.location.pathname= "client/"+row.id;
           }
         }
     }
@@ -53,10 +55,9 @@ function loadCustomers() {
 }
 
 function loadSpecificCustomers(id) {
+    customerID = id;
   var podatki = document.getElementById("podatkiStranka");
-  podatki.tBodies[0].innerHTML = "";
-  podatki.tBodies[1].innerHTML = "";
-  podatki.tBodies[2].innerHTML = "";
+  var obrazec = document.getElementById("podatkiStrankaForm");
   var terapije = document.getElementById("terapijeStranka");
   terapije.tBodies[0].innerHTML = "";
   var data_file = "http://" + window.location.hostname + ":3000/clients/"+id;
@@ -65,29 +66,23 @@ function loadSpecificCustomers(id) {
       console.log(this.responseText);
      if (this.readyState == 4 && this.status == 200) {
         var client = JSON.parse(this.responseText)
-          var row = podatki.tBodies[0].insertRow();
-          row.id= client._id;
-          row.insertCell(0).innerHTML = client.name;
-          row.insertCell(1).innerHTML = client.surname;
-          row.insertCell(2).innerHTML = client.birthYear;
-          row.insertCell(3).innerHTML = client.gender;
-          row.insertCell(4).innerHTML = client.weight + " kg";
-          row.insertCell(5).innerHTML = client.height + " cm";
-          row.insertCell(6).innerHTML = client.bloodPressure;
-          row = podatki.tBodies[1].insertRow();
-          row.insertCell(0).innerHTML = client.profession;
-          row.insertCell(1).innerHTML = client.sportActivity;
-          row.insertCell(2).innerHTML = client.nutrition;
-          row.insertCell(3).innerHTML = client.city;
-          row.insertCell(4).innerHTML = client.telNumber;
-          row.insertCell(5).innerHTML = "<a href=\"mailto:" + client.email + "\">" + client.email + "</a>";
-          row = podatki.tBodies[2].insertRow();
-          var healthStatus = row.insertCell(0);
-          healthStatus.innerHTML = client.healthStatus;
-          healthStatus.colSpan = 4;
-          var other = row.insertCell(1);
-          other.innerHTML = client.other;
-          other.colSpan = 3;
+          obrazec.name.value = client.name;
+          obrazec.surname.value = client.surname;
+          obrazec.birthYear.value = client.birthYear;
+          obrazec.gender.value = client.gender;
+          obrazec.weight.value = client.weight;
+          obrazec.height.value = client.height;
+          obrazec.bloodPressure.value = client.bloodPressure;
+          obrazec.profession.value = client.profession;
+          obrazec.sportActivity.value = client.sportActivity;
+          obrazec.nutrition.value = client.nutrition;
+          obrazec.city.value = client.city;
+          obrazec.telNumber.value = client.telNumber;
+          obrazec.email.value = client.email;
+          obrazec.healthStatus.value = client.healthStatus;
+          obrazec.healthStatus.colSpan = 4;
+          obrazec.other.innerHTML = client.other;
+          obrazec.other.colSpan = 3;
 
 
           for(var i = 0; i < client.therapies.length; i++) {
@@ -119,7 +114,7 @@ function error(text){
     errorElement.innerHTML = text;
 }
 
-function createNewCustomerRequest () {
+function validateInput(){
     var name = document.getElementById("name");
     if( name.value == "" ){
       name.focus();
@@ -193,13 +188,36 @@ function createNewCustomerRequest () {
     customer.telNumber = telNumber.value;
     customer.email = email.value;
     customer.other = other.value;
+    return customer;
+}
+
+function createNewCustomerRequest () {
+    var customer = validateInput();
+
     var data_file = "http://" + window.location.hostname + ":3000/clients";
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", data_file, true);
+    if(id != null){
+        xhttp.open("PUT", data_file, true);
+    }
+    else{
+        xhttp.open("POST", data_file, true);
+    }
+
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.withCredentials = true;
     xhttp.send(JSON.stringify(customer));
     setTimeout(loadCustomers, 500);
+}
+
+function modifyCustomer (id) {
+    var customer = validateInput();
+    customer.id = id;
+    var data_file = "http://" + window.location.hostname + ":3000/clients";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", data_file, true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.withCredentials = true;
+    xhttp.send(JSON.stringify(customer));
 }
 
 function createNewTherapyRequest (id) {

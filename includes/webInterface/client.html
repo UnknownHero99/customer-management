@@ -14,33 +14,65 @@
     <article>
 
       <h1>Stranka</h1>
-      <table id="podatkiStranka">
-        <thead>
-          <th>Ime</th>
-          <th>Priimek</th>
-          <th>Leto Rojstva</th>
-          <th>Spol</th>
-          <th>Teža</th>
-          <th>Višina</th>
-          <th>Krvni Pritisk</th>
-      </thead>
+      <form id="podatkiStrankaForm">
+          <table id="podatkiStranka">
+            <thead>
+              <th>Ime</th>
+              <th>Priimek</th>
+              <th>Leto Rojstva</th>
+              <th>Spol</th>
+              <th>Teža</th>
+              <th>Višina</th>
+              <th>Krvni Pritisk</th>
+          </thead>
 
-        <tbody></tbody>
-        <thead>
-            <th>Stroka</th>
-            <th>Športna Aktivnost</th>
-            <th>Prehrana</th>
-            <th>Kraj</th>
-            <th>Tel. Številka</th>
-            <th>E-poštni Naslov</th>
-        </thead>
-        <tbody></tbody>
-        <thead>
-            <th colspan="4">Zdravstveno Stanje</th>
-            <th colspan="3">Ostalo</th>
-        </thead>
-        <tbody></tbody>
-      </table>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="name" id="name" placeholder="Ime"></td>
+                    <td><input type="text" name="surname" id="surname" placeholder="Priimek"></td>
+                    <td><input type="number" name="birthYear" id="birthYear" placeholder="Leto Rojstva"></td>
+                    <td>
+                      <select name="gender" id="genderDropDown">
+                        <option value="M">Moški</option>
+                        <option value="Ž">Ženska</option>
+                      </select>
+                    </td>
+                    <td><input type="text" name="weight" id="weight" value="" placeholder="Teža"></td>
+                    <td><input type="text" name="height" id="height" value="" placeholder="Višina"></td>
+                    <td><input type="text" name="bloodPressure" id="bloodPressure" value="" placeholder="Krvni Tlak"></td>
+                </tr>
+            </tbody>
+            <thead>
+                <th>Stroka</th>
+                <th>Športna Aktivnost</th>
+                <th>Prehrana</th>
+                <th>Kraj</th>
+                <th>Tel. Številka</th>
+                <th>E-poštni Naslov</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="profession" id="profession" value="" placeholder="Poklic"></td>
+                    <td><input type="text" name="sportActivity" id="sportActivity" value="" placeholder="Športne Aktivnosti"></td>
+                    <td><input type="text" name="nutrition" id="nutrition" value="" placeholder="Prehrana"></td>
+                    <td><input type="text" name="city" id="city" value="" placeholder="Kraj"></td>
+                    <td><input type="text" name="telNumber" id="telNumber" value="" placeholder="Telefonska Številka"></td>
+                    <td><input type="text" name="email" id="email" value="" placeholder="E-pošta"></td>
+                </tr>
+            </tbody>
+            <thead>
+                <th colspan="3">Zdravstveno Stanje</th>
+                <th colspan="3">Ostalo</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3"><textarea name="healthStatus" id="healthStatus" value="" placeholder="Zdravstveno Stanje"></textarea></td>
+                    <td colspan="3"><textarea type="text" name="other" id="other" value="" placeholder="Ostalo"></textarea></td>
+                    <td><button type="button" class="button" onclick="modifyCustomer(customerID);" >Shrani</button></td>
+                </tr>
+            </tbody>
+          </table>
+      </form>
       <br />
 
       <table id="dodajTerapijo">

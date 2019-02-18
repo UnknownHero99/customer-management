@@ -25,7 +25,7 @@ router.use(function(req, res, next){
         }
         if(token){
             jwt.verify(token, "superSecret", function(err, decoded){
-                if(err) res.json({success: false, message: "Authentication failed.token invalid."});
+                if(err) res.status(403).sendFile('/webInterface/' + "login.html" , { root : __dirname});
                 req.decoded = decoded;
                 next();
             });

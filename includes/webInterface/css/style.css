@@ -88,10 +88,12 @@ input, textarea, select{
     border: none;
     border-radius: 5px;
     padding: 5px;
+    margin:5px;
     background-color: #FFF;
-    width: 200px !important;
+    width: 200px;
     text-align: center;
 }
+
 
 input:focus, textarea:focus, select:focus{
     background-color: #34495e;
@@ -109,7 +111,8 @@ input:focus, textarea:focus, select:focus{
 }
 
 #errorMessage{
-  width: 400px;
+  min-width: 200px;
+  max-width:75%;
   margin: 20px auto;
   text-align: center;
   padding: 20px;
@@ -120,4 +123,12 @@ input:focus, textarea:focus, select:focus{
   border-radius: 5px;
   display: none;
 
+}
+
+#loginForm{
+  padding:20px;
+  background-color: #FFF;
+  width: 20%;
+  min-width: 250px;
+  margin: 0 auto;
 }
