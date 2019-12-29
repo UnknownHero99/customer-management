@@ -9,7 +9,7 @@ html, body{
 }
 
 body{
-      background: #1abc9c;
+      background: #f8f9f9;
 }
 
 header{
@@ -17,8 +17,16 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    height: 75px;
-    background-color: #34495e;
+    height: 100px;
+    background-color: #FFF;
+	box-shadow: 0 5px 10px 0 rgba(50, 50, 50, 0.06);
+}
+
+.logo{
+	padding: 15px;
+	padding-left: 50px;
+	height: 80px;
+	width: auto;
 }
 
 h2{
@@ -36,8 +44,17 @@ footer{
     bottom:0;
     left: 0;
     width: 100%;
-    background-color: #34803e;
+    background-color: #222222;
     height: 100px;
+}
+
+.copyright{
+	color: #FFF;
+	text-align: center;
+	padding: 35px 0px;
+	color: #bbbbbb;
+	font-size: 14px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 article{
     padding-top: 100px;
@@ -79,27 +96,42 @@ table a{
   color: black !important;
   text-decoration: none;
 }
+a:hover{
+  color: #67b14b !important;
+  text-decoration: none;
+}
+
+#tabelaStrank tbody tr:hover{
+	background-color: #67b14b;
+	cursor: pointer;
+}
 
 h1{
   text-align: center;
-}
+  text-transform: uppercase;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 3.5px;
+  color: #333333;
+  }
 
 input, textarea, select{
     border: none;
-    border-radius: 5px;
+    border-radius: 1px;
     padding: 5px;
-    background-color: #FFF;
+    background-color: #f2f2f2;
+	color: #000;
     width: 200px !important;
     text-align: center;
 }
 
 input:focus, textarea:focus, select:focus{
-    background-color: #34495e;
+    background-color: #67b14b;
     color: #FFF;
 }
 
 .button{
-    background-color: #1abc9c;
+    background-color: #67b14b;
     border: none;
     padding: 10px 20px;
     color: #FFF;
@@ -114,7 +146,7 @@ input:focus, textarea:focus, select:focus{
   text-align: center;
   padding: 20px;
   background-color: #34495e;
-  color: #1abc9c;
+  color: #67b14b;
   font-weight: bold;
   font-size: 20px;
   border-radius: 5px;
